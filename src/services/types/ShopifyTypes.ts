@@ -1,35 +1,43 @@
 export interface ShopifyProduct {
   id: string;
   title: string;
-  description: string;
-  handle: string;
+  description?: string;
+  handle?: string;
   status: string;
-  variants: ShopifyVariant[];
-  images: ShopifyImage[];
+  variants: {
+    edges: Array<{
+      node: ShopifyVariant;
+    }>;
+  };
+  images: {
+    edges: Array<{
+      node: ShopifyImage;
+    }>;
+  };
 }
 
 export interface ShopifyVariant {
   id: string;
   title: string;
   price: string;
-  sku: string;
-  inventoryQuantity: number;
+  sku?: string;
+  inventoryQuantity?: number;
 }
 
 export interface ShopifyOrder {
   id: string;
   name: string;
-  email: string;
+  email?: string;
   createdAt: string;
-  customer: ShopifyCustomer;
-  totalPriceSet: {
+  customer?: ShopifyCustomer;
+  totalPriceSet?: {
     shopMoney: {
       amount: string;
       currencyCode: string;
     }
   };
-  displayFulfillmentStatus: string;
-  displayFinancialStatus: string;
+  displayFulfillmentStatus?: string;
+  displayFinancialStatus?: string;
   lineItems: {
     edges: Array<{
       node: ShopifyLineItem;
@@ -38,49 +46,53 @@ export interface ShopifyOrder {
 }
 
 export interface ShopifyCustomer {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
+  id?: string;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
 }
 
 export interface ShopifyCollection {
   id: string;
   title: string;
   handle: string;
-  products: ShopifyProduct[];
+  products: {
+    edges: Array<{
+      node: ShopifyProduct;
+    }>;
+  };
 }
 
 interface ShopifyImage {
   id: string;
   url: string;
-  altText: string;
+  altText?: string;
 }
 
 interface ShopifyLineItem {
   id: string;
   title: string;
   quantity: number;
-  variant: ShopifyVariant;
+  variant?: ShopifyVariant;
 }
 
 export interface ProcessedShopifyOrder {
   id: string;
   name: string;
-  email: string;
+  email?: string;
   createdAt: string;
-  customer: ShopifyCustomer;
-  totalPriceSet: {
+  customer?: ShopifyCustomer;
+  totalPriceSet?: {
     shopMoney: {
       amount: string;
       currencyCode: string;
     }
   };
-  displayFulfillmentStatus: string;
-  displayFinancialStatus: string;
-  lineItems: {
+  displayFulfillmentStatus?: string;
+  displayFinancialStatus?: string;
+  lineItems: Array<{
     title: string;
     quantity: number;
-    variant: ShopifyVariant;
-  }[];
+    variant?: ShopifyVariant;
+  }>;
 } 
