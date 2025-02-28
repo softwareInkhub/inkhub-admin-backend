@@ -1,0 +1,8 @@
+{
+  "watch": ["src/**/*", "public/**/*"],
+  "ext": "ts,tsx,js,jsx,json",
+  "exec": "next dev",
+  "env": {
+    "NODE_ENV": "development"
+  }
+} 
